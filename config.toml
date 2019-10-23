@@ -1,0 +1,63 @@
+baseurl = "https://x1ah.github.io"
+languageCode = "zh"
+defaultContentLanguage = "cn"
+defaultContentLanguageInSubdir = true
+title = "软饭硬吃"
+theme = "terminal"
+paginate = 5
+
+[params]
+  # dir name of your blog content (default is `content/posts`)
+  contentTypeName = "posts"
+  # ["orange", "blue", "red", "green", "pink"]
+  themeColor = "orange"
+  # if you set this to 0, only submenu trigger will be visible
+  showMenuItems = 2
+  # show selector to switch language
+  showLanguageSelector = false
+  # set theme to full screen width
+  fullWidthTheme = true
+  # center theme with default width
+  centerTheme = false
+  # set a custom favicon (default is a `themeColor` square)
+  favicon = "avator.jpeg"
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    title = "重案组之虎"
+    subtitle = "A simple, retro theme for Hugo"
+    keywords = ""
+    copyright = ""
+    menuMore = "Show more"
+    readMore = "Read more"
+    readOtherPosts = "Read other posts"
+
+    [languages.en.params.logo]
+      logoText = "Terminal"
+      logoHomeLink = "/"
+
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        identifier = "about"
+        name = "About"
+        url = "/about"
+ [languages.cn]
+    languageName = "简体中文"
+    title = "重案组之虎"
+    subtitle = ""
+    keywords = ""
+    copyright = ""
+    menuMore = "更多"
+    readMore = "阅读全文"
+    readOtherPosts = "其他文章"
+
+    [languages.cn.params.logo]
+      logoText = "重案组之虎罢了"
+      logoHomeLink = "/"
+
+    [languages.cn.menu]
+      [[languages.cn.menu.main]]
+        identifier = "About"
+        name = "About"
+        url = "/about"
