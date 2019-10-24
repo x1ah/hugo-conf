@@ -5,6 +5,7 @@ defaultContentLanguageInSubdir = true
 title = "软饭硬吃"
 theme = "terminal"
 paginate = 5
+rssLimit = 10
 
 [params]
   # dir name of your blog content (default is `content/posts`)
@@ -32,6 +33,8 @@ paginate = 5
     menuMore = "更多"
     readMore = "阅读全文"
     readOtherPosts = "其他文章"
+    missingContentMessage = "Page not found."
+    missingBackButtonLabel = "Go Home"
 
     [languages.cn.params.logo]
       logoText = "重案组之虎罢了"
@@ -42,3 +45,7 @@ paginate = 5
         identifier = "About"
         name = "About"
         url = "/about"
+      [[languages.cn.menu.RSS]]
+        identifier = "RSS"
+        name = "RSS"
+        url = "/feed"
