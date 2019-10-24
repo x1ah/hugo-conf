@@ -13,7 +13,7 @@ rssLimit = 10
   # ["orange", "blue", "red", "green", "pink"]
   themeColor = "orange"
   # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 2
+  showMenuItems = 5
   # show selector to switch language
   showLanguageSelector = false
   # set theme to full screen width
@@ -45,7 +45,7 @@ rssLimit = 10
         identifier = "About"
         name = "About"
         url = "/about"
-      [[languages.cn.menu.RSS]]
+      [[languages.cn.menu.main]]
         identifier = "RSS"
         name = "RSS"
-        url = "/feed"
+        url = "/index.xml"
