@@ -1,4 +1,4 @@
-baseurl = "ascii.run"
+baseurl = "https://ascii.run"
 languageCode = "zh"
 defaultContentLanguage = "cn"
 defaultContentLanguageInSubdir = true
@@ -23,25 +23,6 @@ paginate = 5
   favicon = "avator.jpeg"
 
 [languages]
-  [languages.en]
-    languageName = "English"
-    title = "重案组之虎"
-    subtitle = "A simple, retro theme for Hugo"
-    keywords = ""
-    copyright = ""
-    menuMore = "Show more"
-    readMore = "Read more"
-    readOtherPosts = "Read other posts"
-
-    [languages.en.params.logo]
-      logoText = "Terminal"
-      logoHomeLink = "/"
-
-    [languages.en.menu]
-      [[languages.en.menu.main]]
-        identifier = "about"
-        name = "About"
-        url = "/about"
  [languages.cn]
     languageName = "简体中文"
     title = "重案组之虎"
