@@ -1,0 +1,6 @@
+git add .
+git commit -m'update'
+
+cd public
+git add .
+git commit -m'update'
