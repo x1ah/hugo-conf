@@ -5,7 +5,7 @@ author = "x1ah"
 cover = ""
 tags = ["Distributed"]
 keywords = ["Distributed"]
-description = "向量时钟(Vector Clock) 是分布式系统中检测事件因果关系的一种算法, 通常在分布式系统中用来检测多个 replication 之间是否发生数据冲突。
+description = "向量时钟(Vector Clock) 是分布式系统中检测事件因果关系的一种算法, 通常在分布式系统中用来检测多个 replication 之间是否发生数据冲突。"
 showFullContent = false
 +++
 
