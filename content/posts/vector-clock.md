@@ -11,7 +11,7 @@ showFullContent = false
 
 ## 向量时钟(Vector Clock)
 
-向量时钟是在分布式系统中检测事件因果关系的一种算法。如图：![vector clock](https://en.wikipedia.org/wiki/Vector_clock#/media/File:Vector_Clock.svg)
+向量时钟是在分布式系统中检测事件因果关系的一种算法。如图：![Imgur](https://i.imgur.com/0XRtT9o.png)
 
 系统中有 ABC 三个进程，每个进程都维护自己的一个向量时钟，时钟的规则如下：
 1. 初始时，所有进程的时钟都为 0
