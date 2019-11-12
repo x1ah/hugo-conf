@@ -17,7 +17,7 @@ rssLimit = 10
   # show selector to switch language
   showLanguageSelector = false
   # set theme to full screen width
-  fullWidthTheme = true
+  fullWidthTheme = false
   # center theme with default width
   centerTheme = false
   # set a custom favicon (default is a `themeColor` square)
