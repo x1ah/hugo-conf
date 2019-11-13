@@ -56,3 +56,8 @@ rssLimit = 10
         name = "RSS"
         url = "/index.xml"
         weight = 3
+      [[languages.cn.menu.main]]
+        identifier = "words"
+        name = "一闪而过"
+        url = "/words/"
+        weight = 4
