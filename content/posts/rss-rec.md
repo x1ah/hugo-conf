@@ -33,6 +33,7 @@ showFullContent = false
 - [<antirez>](http://antirez.com/rss)
 - [王垠的博客 - 当然我在扯淡](https://rsshub.app/blogs/wangyin)
 - [Instagram Engineering - Medium](https://instagram-engineering.com/feed)
+- [Armin Ronacher's Thoughts and Writings](http://lucumr.pocoo.org/feed.atom)   (Flask's author)
 
 
 效果图:
