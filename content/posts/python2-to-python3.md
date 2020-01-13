@@ -56,3 +56,29 @@ showFullContent = false
 
 ### str/bytes/unicode
 这个应当属迁移的最繁琐的地方。
+
+中间遇到一次问题，排查了很久。代码库中有一个 `@cache` 装饰器，用来缓存函数返回值，在 py2 中有如下一段代码:
+
+```python
+
+@cache('cache_key')
+def foo():
+    return "py2 返回结构"
+```
+
+cache 拿到函数返回值后，原样放进 Memcached，因为 Python2 中，str/bytes 实际上是不敏感的，甚至可以等同。该 `foo` 函数在 py2 下返回的是一个带 encoding 的 str，可以看做是 bytes 类型，这时候，如果在 py3 下把缓存结果取出来，那么将会是拿到一个 bytes 类型: `b"py2 返回结构"`，这里就很容易出错了，在 Python2 下时，这个和 str 一样，可以当做 str 处理，但是 Python3 必须正视类型，该用 str(text type) 就不能用 bytes。
+
+
+## 代码库迁移完成
+
+把代码库全部兼容 Python2 和 Python3 之后，这时候代码库是可以同时在 Python2 和 Python3 上跑的，因此可以逐步开始切分流量，大概可以分成这么几个步骤：
+1. 把 staging 流量复制到 Python3 的环境
+2. 部署 production 的 Python3 环境，并切分办公室流量至 Python3 环境
+3. 切分线上小部分流量到 Python3 环境，并逐步增加，直至全部覆盖
+
+
+## 迁移后工作
+
+全部迁移完成后，自然会给代码加上 type hint，前期可以使用 pre-commit 增加 mypy 类型检查，并且只检查改动到的文件。与此同时，使用 [MonkeyType](https://github.com/Instagram/MonkeyType) 收集类型，自动添加一部分，减少工作量。
+
+至此，迁移工作已经全部完成。
