@@ -1,5 +1,5 @@
 +++
-title = "Python2 迁移到 Python3 小事记"
+title = "Python2 迁移到 Python3 规划和实施"
 date = "2019-11-12"
 author = "x1ah"
 cover = ""
