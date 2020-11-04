@@ -9,7 +9,7 @@ description = "Explain of Elasticsearch's terminology: Index / Shard / Segment"
 showFullContent = false
 +++
 
-References from https://stackoverflow.com/a/15429578
+***References from https://stackoverflow.com/a/15429578***
 
 To explain:
 
@@ -41,4 +41,4 @@ The more segments there are, the longer each search takes. So Elasticsearch will
 Segments are immutable. When a document is updated, it actually just marks the old document as deleted, and indexes a new document. The merge process also expunges these old deleted documents.
 
 
-References from https://stackoverflow.com/a/15429578
+***References from https://stackoverflow.com/a/15429578***
