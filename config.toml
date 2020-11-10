@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://when.run"
 languageCode = "zh"
 defaultContentLanguage = "cn"
 defaultContentLanguageInSubdir = true
