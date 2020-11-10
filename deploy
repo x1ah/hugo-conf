@@ -9,6 +9,7 @@ git push origin master
 
 # update hugo conf
 
+cd ..
 git add .
 git commit -m'update'
 git push origin master
