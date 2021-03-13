@@ -6,7 +6,7 @@ title = "软饭硬吃"
 theme = "terminal"
 paginate = 5
 rssLimit = 10
-googleAnalytics = "G-V6QS0ZV5VV"
+googleAnalytics = "G-W1HPKKSBLB"
 
 [params]
   # dir name of your blog content (default is `content/posts`)
