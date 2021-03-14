@@ -2,7 +2,7 @@ baseurl = "https://when.run"
 languageCode = "zh"
 defaultContentLanguage = "cn"
 defaultContentLanguageInSubdir = true
-title = "软饭硬吃"
+title = "x1ah"
 theme = "terminal"
 paginate = 5
 rssLimit = 10
@@ -27,7 +27,7 @@ googleAnalytics = "G-W1HPKKSBLB"
 [languages]
  [languages.cn]
     languageName = "简体中文"
-    title = "重案组之虎"
+    title = "x1ah"
     subtitle = ""
     keywords = ""
     copyright = ""
@@ -38,7 +38,7 @@ googleAnalytics = "G-W1HPKKSBLB"
     missingBackButtonLabel = "Go Home"
 
     [languages.cn.params.logo]
-      logoText = "重案组之虎罢了"
+      logoText = "x1ah"
       logoHomeLink = "/"
 
     [languages.cn.menu]
