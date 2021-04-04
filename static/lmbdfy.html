@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>需要我帮你百度一下吗? </title>
+    <link href="https://cdn.jsdelivr.net/gh/gaowanliang/wylmtbfy/css/style.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/gh/gaowanliang/wylmtbfy/css/font.min.css" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W1HPKKSBLB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-W1HPKKSBLB');
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h1 class="title">需要我帮你 <img src="https://www.baidu.com/img/flexible/logo/pc/result.png"
+                    class="baidu-logo" alt="百度" title="需要我帮你百度一下吗"> 一下吗？
+            </h1>
+            <div class="mk-search-form">
+                <input type="text" id="kw">
+                <button id="search" class="anim-trans">百度一下</button>
+            </div>
+        </div>
+        <div id="instructions">输入一个问题，然后点击百度一下</div>
+        <div id="output-box">
+            <input type="text" id="output-link" readonly>
+            <div>
+                <button class="btn btn-copy anim-trans" data-clipboard-target="#output-link">复制</button>
+                <button class="btn anim-trans" id="btn-preview">预览</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="about-box" class="mk-pop-box">
+        <div class="mk-pop-box-inner">
+            <h3 class="mk-pop-box-title">免责声明</h3>
+            <div class="mk-pop-box-content">
+                <p>本站与<a href="https://www.baidu.com" target="_blank">百度公司</a>没有任何联系，baidu 以及本站出现的百度公司 Logo 是<a
+                        href="https://www.baidu.com" target="_blank">百度公司</a>的商标。
+                </p>
+            </div>
+            <button class="mk-pop-box-btn anim-trans" onclick="$('#about-box').fadeOut(200);">我知道了</button>
+        </div>
+    </div>
+    <img src="https://cdn.jsdelivr.net/gh/gaowanliang/wylmtbfy/img/arrow.png" id="arrow">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script>
+        if (window.location.protocol != "https:" && !/(([01]{0,1}\d{0,1}\d|2[0-4]\d|25[0-5])\.){3}([01]{0,1}\d{0,1}\d|2[0-4]\d|25[0-5])/.test(window.location.href))
+    window.location.href = "https:" +
+        window.location.href.substring(window.location.protocol.length);
+
+$(document).ready(function () {
+    if (getQueryVariable("p") == false && /\?/.test(window.location.href)) window.location.href = '/'
+    /* 复制结果 */
+    var clipboard = new ClipboardJS('.btn-copy');
+    clipboard.on('success', function (e) {
+        if (e.trigger.disabled === false || e.trigger.disabled === undefined) {
+            showTips('<span style="color: #4caf50">复制成功！赶紧把链接甩给伸手党们！</span>');
+        }
+    });
+    clipboard.on('error', function (e) {
+        showTips('<span style="color: red">复制失败，请手动复制</span>');
+    });
+
+    var $outputLink = $('#output-link');
+    $('#search').on('click', function () {
+        var link = window.location.origin + window.location.pathname + '?p=' + encodeURIComponent($('#kw').val());
+        $('#output-box').fadeIn();
+        showTips('复制下面的地址');
+        $outputLink.val(link).focus().select();
+    });
+
+    /* 预览 */
+    var $container = $('.container');
+    $container.on('click', '#btn-preview', function () {
+        var link = $outputLink.val();
+        if (!!link) {
+            window.open(link);
+        }
+    });
+
+    /* 回车搜索 */
+    var $kw = $('#kw');
+    $kw.on('keydown', function (e) {
+        if (e.keyCode == 13) {
+            $('#search').trigger('click');
+        }
+    });
+
+    if (!!window.location.search) {
+        var kw = decodeURIComponent(getQueryVariable("p"));
+        var $arrow = $('#arrow');
+        showTips('让我来帮你百度一下');
+        setTimeout(function () {
+            showTips('1、找到输入框并选中');
+            $arrow.show().animate({
+                left: $kw.offset().left + 10 + 'px',
+                top: ($kw.offset().top + $kw.height() / 2) + 'px'
+            }, 2000, function () {
+                showTips('2、输入你的问题');
+                $arrow.hide();
+                var $kw = $('#kw');
+                $kw.focus();
+                var i = 0;
+                var interval = setInterval(function () {
+                    $kw.val(kw.substr(0, i));
+                    i++;
+                    if (i > kw.length) {
+                        clearInterval(interval);
+                        showTips('3、点击下“百度一下”按钮');
+                        $arrow.show();
+                        var $search = $('#search');
+                        $arrow.animate({
+                            left: $search.offset().left + $search.width() / 2 + 'px',
+                            top: $search.offset().top + $search.height() / 2 + 'px'
+                        }, 1000, function () {
+                            showTips('<strong>这对你而言就是这么困难么？</strong>');
+                            setTimeout(function () {
+                                window.location = 'https://www.baidu.com/s?ch=3&ie=utf-8&wd=' + encodeURIComponent(kw);
+                            }, 2000);
+                        });
+                    }
+                }, 200);
+            });
+        }, 1000);
+    }
+});
+
+/* 显示提示信息 */
+function showTips(tips) {
+    $('#instructions').html(tips);
+}
+
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) { return pair[1]; }
+    }
+    return (false);
+}
+
+$("#disclaimer").click(function () {
+    var windowWidth = $(window).width(),
+        windowHeight = $(window).height(),
+        popupHeight = $("#about-box").height(),
+        popupWidth = $("#about-box").width();
+
+    $("#about-box").css({
+        "position": "absolute",
+        "left": windowWidth / 2 - popupWidth / 2,
+        "top": windowHeight / 2 - popupHeight / 2
+    }).fadeIn(200);
+});
+    </script>
+
+</body>
+
+</html>

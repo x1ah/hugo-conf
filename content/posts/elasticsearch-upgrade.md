@@ -99,6 +99,11 @@ Transfer/sec:    388.64MB
 业务数据测试的同时，还需要测试插件加载是否与老集群一致，比如 ik 的词典文件是否正常加载，通常可以使用 [`/index/_analyze`](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-analyze.html) 接口来进行测试，并比对结果是否一致
 
 
+#### 诡异的毛刺
+
+在将索引迁移到新集群后，性能监控发现， 搜索请求经常性的出现毛刺，而且看起来是有规律的毛刺
+
+
 #### 兼容性测试
 
 由于两个集群版本跨度比较大，容易出乌龙。比如下面这个 DSL，在 es 5.x 和 es7.x 两个版本的搜索结果迥然不同。
