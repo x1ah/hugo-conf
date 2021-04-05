@@ -101,7 +101,20 @@ Transfer/sec:    388.64MB
 
 #### 诡异的毛刺
 
-在将索引迁移到新集群后，性能监控发现， 搜索请求经常性的出现毛刺，而且看起来是有规律的毛刺
+在将索引迁移到新集群后，性能监控发现， 搜索请求经常性的出现毛刺，而且看起来是有规律的毛刺，如果 30s 内没有 search 请求，那么下一次必然会出现一根毛刺
+![es-latency](/image/es_latency.png)
+
+这个问题困扰了很久，排查思路如下：
+1. 首先查看是否为 SDK 的问题，是不是客户端到 es server 的长连接断了，导致 30s 后需要重新建立长连接，调长链接时间后发现并未改善
+2. 接下来看索引的 `_stats` 信息，发现 `docs.deleted` 特别多。产生这么多 deleted 的原因可以解释，因为一个 update 操作等于一个 create + 一个 delete，创建新 doc，标记老 doc 为 deleted。但是在经过一段时间之后，merge 会把老的 segment 给合并掉，deleted 的 doc 也一并被清理了，但是这个指标却没有见变少，一直在增加，此时怀疑是 merge 流程的问题。是否 merge 未正常工作。
+![docs.deleted](/image/docs_deleted.png)
+
+3. 继续看索引的 `_stats` 信息，发现 `refresh` 数非常奇怪，默认 `refresh_interval` 是 1s，也就是正常情况下是每秒刷新一次，refresh.total 也就是索引创建到当前时间的秒数，而几天前创建的索引，现在却只 refresh 了800+次，那么是否跟这个没有 refresh 有关系呢？为了验证这个问题，手动跑个脚本，在后台不间断的发送 search 请求，发现开始 refresh 了，毛刺也消失了，说明问题出在了 refresh 上面，出于某些原因没有正常的执行 refresh
+![refresh.total](/image/refresh_total.png)
+
+4. 在一番查找之后，在 [es 文档](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#index-refresh-interval-setting) 的 `refresh_interval` 字段解释里发现这么一句话，如果没有显示的指定 `refresh_interval`，那么如果 30s 内没有 search 请求来，会跳过 refresh 步骤，直到有 search 请求来时，才会触发 refresh，并等 refresh 完之后才开始处理 search 请求。这也就能解释为什么 30s 没有搜索流量就会出现一根毛刺了。当手动给索引指定 `refresh_interval` 之后，默认行为就变得和老版本一样，不再跳过 refresh，毛刺也就消失了。在 elasticsearch 7.0 的 [release note](https://www.elastic.co/cn/blog/elasticsearch-7-0-0-released) 里也提到了：
+![refresh.doc](/image/refresh_interval_doc.png)
+![release](/image/es7_release.png)
 
 
 #### 兼容性测试
