@@ -6,7 +6,7 @@ title = "x1ah"
 theme = "terminal"
 paginate = 5
 rssLimit = 10
-googleAnalytics = "G-W1HPKKSBLB"
+googleAnalytics = "G-J4BSZWYDW3"
 
 [params]
   # dir name of your blog content (default is `content/posts`)
