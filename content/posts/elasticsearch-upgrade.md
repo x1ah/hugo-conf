@@ -41,7 +41,9 @@ showFullContent = false
 2. 新建索引。这一步的目的是方便后面的索引能够同步双写到新老两个集群。同时建索引时需要注意，es7 已经废弃了 mapping 里的 document type，mapping 不再需要指定 type 了
 3. 索引双写。第二步已经将索引在新集群中建好了，这里在业务代码中开始双写，保证新增的 document 能够与老集群的索引一致
 4. 全量索引。新增索引一致后，存量的 document 也需要一致，因此需要把存量的 doc 重新全部导入到新集群内。这一步官方提供了一个 [reindex from remote](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html#reindex-from-remote)，但是实际操作后发现，reindex 后，mapping 和 settings 会有出入，并且不确定这个操作对老集群的压力大不大，因此还是决定跑下脚本人工重建
-5. 结束
+5. 线上测试，包括性能测试、稳定性观察、数据比对等
+6. 停掉索引双写
+7. 下线老集群，全面覆盖新集群
 
 
 ## 测试新集群
