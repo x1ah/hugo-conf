@@ -6,6 +6,7 @@
 > brew install hugo
 ```
 
+
 ## New Post
 
 ```shell
