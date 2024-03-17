@@ -45,10 +45,10 @@ googleAnalytics = "G-21PQZQT56W"
       [[languages.cn.menu.main]]
         identifier = "About"
         name = "About"
-        url = "/about/"
+        url = "/cn/about/"
         weight = 1
       [[languages.cn.menu.main]]
         identifier = "RSS"
         name = "RSS"
-        url = "/index.xml"
+        url = "/cn/index.xml"
         weight = 3
