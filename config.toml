@@ -4,9 +4,11 @@ defaultContentLanguage = "cn"
 defaultContentLanguageInSubdir = true
 title = "x1ah"
 theme = "terminal"
-paginate = 5
 rssLimit = 10
 googleAnalytics = "G-21PQZQT56W"
+
+[pagination]
+  pagerSize = 5
 
 [params]
   # dir name of your blog content (default is `content/posts`)
